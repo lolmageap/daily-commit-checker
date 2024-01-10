@@ -1,0 +1,27 @@
+name: Check Daily Commits
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  
+    
+jobs:
+  count-commits:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Set up Git
+      run: |
+        git config --global user.email "your-email"
+        git config --global user.name "your-name"
+
+    - name: Count Commits
+      id: commit_count
+      run: |
+        commit_count=$(git rev-list --count --since="yesterday" HEAD)
+        echo "::set-output name=commit_count::$commit_count"
+
+    - name: Display Commit Count
+      run: echo "Today's commit count: ${{ steps.commit_count.outputs.commit_count }}"
