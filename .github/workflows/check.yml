@@ -1,27 +1,43 @@
-name: Check Daily Commits
+name: Daily Commit Reward
 
 on:
   schedule:
-    - cron: '0 0 * * *'  
-    
+    - cron: '0 0 * * *'
+
 jobs:
-  count-commits:
+  commit_reward:
     runs-on: ubuntu-latest
-
+    
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
-
-    - name: Set up Git
-      run: |
-        git config --global user.email "your-email"
-        git config --global user.name "your-name"
-
-    - name: Count Commits
-      id: commit_count
-      run: |
-        commit_count=$(git rev-list --count --since="yesterday" HEAD)
-        echo "::set-output name=commit_count::$commit_count"
-
-    - name: Display Commit Count
-      run: echo "Today's commit count: ${{ steps.commit_count.outputs.commit_count }}"
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      
+      - name: Count Commits
+        id: count_commits
+        run: echo "::set-output name=commit_count::$(git rev-list --count HEAD)"
+      
+      - name: Commit Check
+        run: |
+          commit_count=${{ steps.count_commits.outputs.commit_count }}
+          if [ $commit_count -lt 3 ]; then
+            echo "Not enough commits. Sending money to parents..."
+            
+            STRIPE_SECRET_KEY="${{ secrets.STRIPE_SECRET_KEY }}"
+            TRANSFER_AMOUNT=10000
+            TARGET_STRIPE_ACCOUNT_ID=${{ secrets.TARGET_STRIPE_ACCOUNT_ID }}
+            
+            transfer_result=$(curl -X POST "https://api.stripe.com/v1/transfers" \
+              -u $STRIPE_SECRET_KEY: \
+              -d amount=$TRANSFER_AMOUNT \
+              -d currency=krw \
+              -d destination=TARGET_STRIPE_ACCOUNT_ID)
+            
+            if [[ $transfer_result == *"error"* ]]; then
+              echo "Error occurred while transferring money."
+              exit 1
+            else
+              echo "Money transferred successfully!"
+            fi
+          else
+            echo "Commit goal achieved!"
+          fi
