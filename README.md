@@ -1,6 +1,4 @@
 # everyday-commit
-매일 커밋한 횟수를 파악하고 커밋이 특정 횟수를 넘기지 못한다면 디메리트를 준다.
--> 하루 3커밋을 넘기지 못한다면 Toss Api로 부모님께 10,000원씩 송금한다.
 
 ## Spec
 - framework: ktor
@@ -8,3 +6,12 @@
 - infra: aws ec2
 - scheduler: kafka streams
 - dbms: mongoDB
+- orm: kmongo
+- logger: logback
+
+## Workflow
+1. 매일 00:01:00 에 kafka streams 를 통해 전날 커밋한 횟수를 파악 한다.
+2. 커밋한 횟수가 3회 미만 이라면 toss api 를 통해 부모님 께 10,000원씩 송금 한다.
+3. 송금한 내역을 db 에 저장 한다.
+4. 송금한 내역을 slack 으로 알린다.
+5. 만약 송금 실패 시 slack 으로 알린다.
