@@ -1,5 +1,16 @@
-spring:
-  data:
-    mongodb:
-      database: filial-scheduler
-      uri: mongodb://localhost:27017
+#spring:
+#  data:
+#    mongodb:
+#      database: filial-scheduler
+#      uri: mongodb://localhost:27017
+
+jasypt:
+  encryptor:
+    password: secret
+
+github:
+  user: your-github-username
+  token: your-github-token
+
+toss:
+  apikey: test
