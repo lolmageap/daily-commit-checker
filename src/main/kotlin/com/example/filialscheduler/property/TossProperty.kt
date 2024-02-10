@@ -4,5 +4,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties
 
 @ConfigurationProperties(prefix = "toss")
 data class TossProperty(
-    val apikey: String,
+    val clientKey: String,
+    val secretKey: String,
 )
