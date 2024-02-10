@@ -1,12 +1,12 @@
 package com.example.filialscheduler.client
 
+import com.example.filialscheduler.extension.defaultSerializationMessage
 import com.example.filialscheduler.property.SlackProperty
 import com.fasterxml.jackson.databind.ObjectMapper
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.stereotype.Component
-import org.springframework.web.reactive.function.BodyInserters
 import org.springframework.web.reactive.function.client.WebClient
 import org.springframework.web.reactive.function.client.awaitBody
 
@@ -20,16 +20,12 @@ class SlackClient(
 
     suspend fun sendMessage(): Unit = coroutineScope {
         val webClient = WebClient.create(slackProperty.url)
-        val slackMessage = mapOf("text" to "message 보냄")
-
-        val value = BodyInserters.fromValue(
-            objectMapper.writeValueAsString(slackMessage)
-        )
+        val message = objectMapper.defaultSerializationMessage
 
         try {
             launch {
                 webClient.post()
-                    .body(value)
+                    .body(message)
                     .retrieve()
                     .awaitBody()
             }
