@@ -13,4 +13,10 @@ github:
   token: your-github-token
 
 toss:
-  apikey: test
+  client-key: your-client-key
+  secret-key: your-secret-key
+
+notification:
+  slack:
+    webhook:
+      url: your-slack-webhook-url
