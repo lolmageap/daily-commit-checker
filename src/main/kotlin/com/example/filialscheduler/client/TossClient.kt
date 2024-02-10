@@ -15,7 +15,7 @@ class TossClient(
 
     suspend fun remittance() {
         val tossRequest = TossRequest().apply {
-            apiKey = tossProperty.apikey
+            apiKey = tossProperty.clientKey
         }
         val webClient = WebClient.create("https://pay.toss.im")
 
