@@ -1,11 +1,10 @@
 package com.example.filialscheduler.dto
 
 import com.fasterxml.jackson.annotation.JsonCreator
-import com.fasterxml.jackson.annotation.JsonProperty
 import java.time.ZonedDateTime
 
 data class GithubRepositoryName @JsonCreator constructor(
-    @JsonProperty("name") val name: String
+    val name: String
 )
 
 data class GitHubCommit(
