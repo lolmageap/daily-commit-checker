@@ -9,3 +9,8 @@ val ObjectMapper.defaultSerializationMessage: BodyInserter<String, ReactiveHttpO
     get() = BodyInserters.fromValue(
         writeValueAsString("Message 발송")
     )
+
+fun ObjectMapper.serializeMessage(message: String) =
+    BodyInserters.fromValue(
+        writeValueAsString(message)
+    )
