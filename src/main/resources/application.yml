@@ -1,9 +1,3 @@
-#spring:
-#  data:
-#    mongodb:
-#      database: filial-scheduler
-#      uri: mongodb://localhost:27017
-
 jasypt:
   encryptor:
     password: secret
@@ -12,9 +6,15 @@ github:
   user: your-github-username
   token: your-github-token
 
-toss:
-  client-key: your-client-key
-  secret-key: your-secret-key
+coolsms:
+  api-key: your-coolsms-api-key
+  api-secret: your-coolsms-api-secret
+  from: your-phone-number
+
+phone:
+  mom: your-mom-number
+  dad: your-dad-number
+  girlfriend: your-girlfriend-number
 
 notification:
   slack:
