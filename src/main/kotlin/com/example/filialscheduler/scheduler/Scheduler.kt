@@ -2,6 +2,7 @@ package com.example.filialscheduler.scheduler
 
 import com.example.filialscheduler.client.GithubClient
 import com.example.filialscheduler.client.SlackClient
+import com.example.filialscheduler.client.SmsClient
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Component
 
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Component
 class Scheduler(
     private val githubClient: GithubClient,
     private val slackClient: SlackClient,
+    private val smsClient: SmsClient,
 ) {
 
     @Scheduled(cron = "0 1 0 * * *", zone = "Asia/Seoul")
@@ -17,10 +19,12 @@ class Scheduler(
 
         if (count == 0) {
             try {
-                slackClient.sendMessage()
+                smsClient.sendSms()
             } catch (e: Exception) {
-                TODO("error handling")
+                slackClient.sendMessage()
             }
         }
+
+
     }
 }
