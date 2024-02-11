@@ -1,6 +1,6 @@
 package com.example.filialscheduler.client
 
-import com.example.filialscheduler.extension.defaultSerializationMessage
+import com.example.filialscheduler.extension.defaultSerializeMessage
 import com.example.filialscheduler.property.SlackProperty
 import com.fasterxml.jackson.databind.ObjectMapper
 import kotlinx.coroutines.coroutineScope
@@ -20,7 +20,7 @@ class SlackClient(
 
     suspend fun sendMessage(): Unit = coroutineScope {
         val webClient = WebClient.create(slackProperty.url)
-        val message = objectMapper.defaultSerializationMessage
+        val message = objectMapper.defaultSerializeMessage
 
         try {
             launch {

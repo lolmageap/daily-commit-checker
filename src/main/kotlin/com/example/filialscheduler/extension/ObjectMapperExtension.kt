@@ -5,7 +5,7 @@ import org.springframework.http.ReactiveHttpOutputMessage
 import org.springframework.web.reactive.function.BodyInserter
 import org.springframework.web.reactive.function.BodyInserters
 
-val ObjectMapper.defaultSerializationMessage: BodyInserter<String, ReactiveHttpOutputMessage>
+val ObjectMapper.defaultSerializeMessage: BodyInserter<String, ReactiveHttpOutputMessage>
     get() = BodyInserters.fromValue(
         writeValueAsString("Message 발송")
     )
