@@ -31,6 +31,7 @@ dependencies {
 
     implementation("org.jasypt:jasypt:1.9.3")
     implementation("com.slack.api:slack-api-client:1.38.0")
+    implementation("net.nurigo:sdk:4.3.0")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
