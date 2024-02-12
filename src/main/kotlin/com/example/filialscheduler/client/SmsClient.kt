@@ -10,7 +10,6 @@ import net.nurigo.sdk.message.service.DefaultMessageService
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.stereotype.Component
 
-
 @Component
 @EnableConfigurationProperties(CoolsmsProperty::class, PhoneProperty::class)
 class SmsClient(
