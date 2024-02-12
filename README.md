@@ -1,4 +1,4 @@
-# everyday-commit
+# check-commit-scheduler
 
 ## Spec
 - language: kotlin
