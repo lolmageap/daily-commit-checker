@@ -17,7 +17,7 @@ class SlackClient(
     private val objectMapper: ObjectMapper,
 ) {
 
-    suspend fun sendMessage(): Unit = coroutineScope {
+    suspend fun sendErrorMessage(): Unit = coroutineScope {
         val webClient = WebClient.create(slackProperty.url)
         val message = objectMapper.defaultSerializeMessage
 
