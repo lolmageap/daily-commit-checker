@@ -21,7 +21,7 @@ class Scheduler(
             try {
                 smsClient.sendSms()
             } catch (e: Exception) {
-                slackClient.sendMessage()
+                slackClient.sendErrorMessage()
             }
         }
 
