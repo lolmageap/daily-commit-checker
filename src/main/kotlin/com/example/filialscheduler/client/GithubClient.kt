@@ -32,7 +32,7 @@ class GithubClient(
     }
 
     private suspend fun getRepositoryNames(webClient: WebClient): List<GithubRepositoryName> {
-        val repositoriesUrl = "/users/${githubProperty.user}/repos"
+        val repositoriesUrl = "/users/${githubProperty.user}/repos?sort=created&direction=desc"
 
         return webClient.get()
             .uri(repositoriesUrl)
