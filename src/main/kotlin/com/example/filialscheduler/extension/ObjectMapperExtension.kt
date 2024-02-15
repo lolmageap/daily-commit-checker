@@ -8,7 +8,7 @@ import org.springframework.web.reactive.function.BodyInserters
 val ObjectMapper.defaultSerializeMessage: BodyInserter<String, ReactiveHttpOutputMessage>
     get() = BodyInserters.fromValue(
         writeValueAsString(
-            mapOf("text" to "Slack message")
+            mapOf("text" to "문자 발송에 실패했습니다.")
         )
     )
 
