@@ -18,7 +18,7 @@ class TestController(
     suspend fun test() = githubClient.getCommitsCountForYesterday()
 
     @PostMapping("/slack")
-    suspend fun slackTest() = slackClient.sendMessage()
+    suspend fun slackTest() = slackClient.sendErrorMessage()
 
     @PostMapping("/sms")
     suspend fun smsTest() = smsClient.sendSms()
