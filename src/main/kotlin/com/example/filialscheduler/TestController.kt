@@ -14,8 +14,8 @@ class TestController(
     private val smsClient: SmsClient,
 ) {
 
-    @GetMapping("/test")
-    suspend fun test() = githubClient.getCommitsCountForYesterday()
+    @GetMapping("/github")
+    suspend fun github() = githubClient.getCommitsCountForYesterday()
 
     @PostMapping("/slack")
     suspend fun slackTest() = slackClient.sendMessage()
