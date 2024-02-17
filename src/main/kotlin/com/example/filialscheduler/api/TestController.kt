@@ -1,4 +1,4 @@
-package com.example.filialscheduler
+package com.example.filialscheduler.api
 
 import com.example.filialscheduler.client.GithubClient
 import com.example.filialscheduler.client.SlackClient
