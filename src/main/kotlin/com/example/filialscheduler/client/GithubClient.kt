@@ -16,22 +16,21 @@ import org.springframework.web.reactive.function.client.awaitBody
 class GithubClient(
     private val githubProperty: GithubProperty,
 ) {
+    private val webClient = WebClient.create("https://api.github.com")
 
     suspend fun getCommitsCountForYesterday(): Int = coroutineScope {
-        val webClient = WebClient.create("https://api.github.com")
-
-        val githubRepositoryNames = getRepositoryNames(webClient)
+        val githubRepositoryNames = getRepositoryNames()
 
         val commits = githubRepositoryNames.map { repositoryName ->
             async {
-                getCommits(webClient, repositoryName.name)
+                getCommits(repositoryName.name)
             }
         }.awaitAll().flatten()
 
         commits.count { it.yesterdayCommit }
     }
 
-    private suspend fun getRepositoryNames(webClient: WebClient): List<GithubRepositoryName> {
+    suspend fun getRepositoryNames(): List<GithubRepositoryName> {
         val repositoriesUrl = "/users/${githubProperty.user}/repos?sort=created&direction=desc"
 
         return webClient.get()
@@ -41,8 +40,7 @@ class GithubClient(
             .awaitBody<List<GithubRepositoryName>>()
     }
 
-    private suspend fun getCommits(
-        webClient: WebClient,
+    suspend fun getCommits(
         repositoryName: String,
     ): List<GitHubCommit> {
         val commitsUrl = "/repos/${githubProperty.user}/$repositoryName/commits"
