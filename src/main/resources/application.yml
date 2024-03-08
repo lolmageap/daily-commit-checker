@@ -2,19 +2,20 @@ jasypt:
   encryptor:
     password: secret
 
-github:
-  user: your-github-username
-  token: your-github-token
+cherhy:
+  github:
+    user: your-github-username
+    token: your-github-token
 
-coolsms:
-  api-key: your-coolsms-api-key
-  api-secret: your-coolsms-api-secret
-  from: your-phone-number
+  coolsms:
+    api-key: your-coolsms-api-key
+    api-secret: your-coolsms-api-secret
+    from: your-phone-number
 
-phone:
-  mom: your-mom-number
-  dad: your-dad-number
-  girlfriend: your-girlfriend-number
+  phone:
+    mom: your-mom-number
+    dad: your-dad-number
+    girlfriend: your-girlfriend-number
 
 notification:
   slack:
