@@ -1,8 +1,6 @@
 package com.example.filialscheduler.client
 
-import com.example.filialscheduler.property.CoolsmsProperty
-import com.example.filialscheduler.property.PhoneProperty
-import com.example.filialscheduler.property.randomNumber
+import com.example.filialscheduler.property.CherhyProperty
 import kotlinx.coroutines.coroutineScope
 import net.nurigo.sdk.message.model.Message
 import net.nurigo.sdk.message.request.SingleMessageSendingRequest
@@ -11,22 +9,25 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.stereotype.Component
 
 @Component
-@EnableConfigurationProperties(CoolsmsProperty::class, PhoneProperty::class)
+@EnableConfigurationProperties(CherhyProperty::class)
 class SmsClient(
-    private val coolsmsProperty: CoolsmsProperty,
-    private val phoneProperty: PhoneProperty,
+    private val cherhyProperty: CherhyProperty,
 ) {
 
     private val messageService: DefaultMessageService =
-        DefaultMessageService(coolsmsProperty.apiKey, coolsmsProperty.apiSecret, "https://api.coolsms.co.kr")
+        DefaultMessageService(
+            cherhyProperty.coolsmsApiKey,
+            cherhyProperty.coolsmsApiSecret,
+            "https://api.coolsms.co.kr",
+        )
 
     suspend fun sendSms() = coroutineScope {
         val message = Message(
-            from = coolsmsProperty.from,
-            to = phoneProperty.randomNumber,
+            from = cherhyProperty.coolsmsFrom,
+            to = cherhyProperty.randomNumber,
             text = """
                 내가 내일 저녁에 밥살게
-            """.trimIndent()
+            """.trimIndent(),
         )
 
         messageService.sendOne(

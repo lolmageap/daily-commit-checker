@@ -2,7 +2,7 @@ package com.example.filialscheduler.client
 
 import com.example.filialscheduler.dto.GitHubCommit
 import com.example.filialscheduler.dto.GithubRepositoryName
-import com.example.filialscheduler.property.GithubProperty
+import com.example.filialscheduler.property.CherhyProperty
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
@@ -12,9 +12,9 @@ import org.springframework.web.reactive.function.client.WebClient
 import org.springframework.web.reactive.function.client.awaitBody
 
 @Component
-@EnableConfigurationProperties(GithubProperty::class)
+@EnableConfigurationProperties(CherhyProperty::class)
 class GithubClient(
-    private val githubProperty: GithubProperty,
+    private val cherhyProperty: CherhyProperty,
 ) {
     private val webClient = WebClient.create("https://api.github.com")
 
@@ -31,11 +31,11 @@ class GithubClient(
     }
 
     suspend fun getRepositoryNames(): List<GithubRepositoryName> {
-        val repositoriesUrl = "/users/${githubProperty.user}/repos?sort=created&direction=desc"
+        val repositoriesUrl = "/users/${cherhyProperty.githubName}/repos?sort=created&direction=desc"
 
         return webClient.get()
             .uri(repositoriesUrl)
-            .header("Authorization", "token ${githubProperty.token}")
+            .header("Authorization", "token ${cherhyProperty.githubToken}")
             .retrieve()
             .awaitBody<List<GithubRepositoryName>>()
     }
@@ -43,11 +43,11 @@ class GithubClient(
     suspend fun getCommits(
         repositoryName: String,
     ): List<GitHubCommit> {
-        val commitsUrl = "/repos/${githubProperty.user}/$repositoryName/commits"
+        val commitsUrl = "/repos/${cherhyProperty.githubName}/$repositoryName/commits"
 
         return webClient.get()
             .uri(commitsUrl)
-            .header("Authorization", "token ${githubProperty.token}")
+            .header("Authorization", "token ${cherhyProperty.githubToken}")
             .retrieve()
             .awaitBody<List<GitHubCommit>>()
     }
