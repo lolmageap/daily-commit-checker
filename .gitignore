@@ -38,3 +38,5 @@ out/
 
 ### Kotlin ###
 .kotlin
+
+**/src/test.kotlin.com.example.filialscheduler.EncodeEnvironment.kt
