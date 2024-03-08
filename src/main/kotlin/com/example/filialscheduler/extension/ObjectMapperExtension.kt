@@ -5,10 +5,17 @@ import org.springframework.http.ReactiveHttpOutputMessage
 import org.springframework.web.reactive.function.BodyInserter
 import org.springframework.web.reactive.function.BodyInserters
 
-val ObjectMapper.defaultSerializeMessage: BodyInserter<String, ReactiveHttpOutputMessage>
+val ObjectMapper.defaultSerializedFailureMessage: BodyInserter<String, ReactiveHttpOutputMessage>
     get() = BodyInserters.fromValue(
         writeValueAsString(
-            mapOf("text" to "문자 발송에 실패했습니다.")
+            mapOf("text" to "문자 발송에 실패 했습니다.")
+        )
+    )
+
+val ObjectMapper.defaultSerializeSuccessMessage: BodyInserter<String, ReactiveHttpOutputMessage>
+    get() = BodyInserters.fromValue(
+        writeValueAsString(
+            mapOf("text" to "오늘 하루도 커밋 하느라 고생 했습니다.^^")
         )
     )
 
