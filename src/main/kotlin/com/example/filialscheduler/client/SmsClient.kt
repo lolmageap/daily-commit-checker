@@ -25,8 +25,7 @@ class SmsClient(
             from = coolsmsProperty.from,
             to = phoneProperty.randomNumber,
             text = """
-                안녕하세요. 어제 철희가 공부를 하지 않은 관계로 이렇게 문자를 발송 드립니다.
-                이 문자를 받으면 철희에게 밥을 한번 얻어 먹으세요.
+                내가 내일 저녁에 밥살게
             """.trimIndent()
         )
 
