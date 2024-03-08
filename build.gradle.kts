@@ -28,7 +28,7 @@ dependencies {
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
 
-    implementation("org.jasypt:jasypt:1.9.3")
+    implementation("com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.5")
     implementation("com.slack.api:slack-api-client:1.38.0")
     implementation("net.nurigo:sdk:4.3.0")
 
