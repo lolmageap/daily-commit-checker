@@ -40,4 +40,4 @@ out/
 .kotlin
 
 ### ignore files ###
-!**/src/test.kotlin.com.example.filialscheduler.EncodeEnvironment.kt
+!**/src/test/kotlin/com/example/filialscheduler/EncodeEnvironment.kt
