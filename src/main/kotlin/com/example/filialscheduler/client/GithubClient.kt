@@ -30,14 +30,25 @@ class GithubClient(
         commits.count { it.yesterdayCommit }
     }
 
-    suspend fun getRepositoryNames(): List<GithubRepositoryName> {
-        val repositoriesUrl = "/users/${cherhyProperty.githubName}/repos?sort=created&direction=desc"
+    suspend fun getRepositoryNames(
+        page: Int = 1,
+        size: Int = 50,
+    ): List<GithubRepositoryName> {
+        val repositoriesUrl = "/users/${cherhyProperty.githubName}/repos?page=$page&per_page=$size"
 
-        return webClient.get()
+        val response = webClient.get()
             .uri(repositoriesUrl)
             .header("Authorization", "token ${cherhyProperty.githubToken}")
             .retrieve()
-            .awaitBody<List<GithubRepositoryName>>()
+            .awaitBody<MutableList<GithubRepositoryName>>()
+
+        val hasNextPage = response.size == size
+        if (hasNextPage) {
+            val nextPageRepositories = getRepositoryNames(page + 1, size)
+            response.addAll(nextPageRepositories)
+        }
+
+        return response
     }
 
     suspend fun getCommits(
