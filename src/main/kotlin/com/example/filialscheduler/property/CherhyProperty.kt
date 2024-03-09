@@ -18,8 +18,6 @@ data class CherhyProperty(
     val coolsmsFrom: String = coolsms.from
 
     val blogUser: String = blog.user
-    val blogUrl: String = blog.url
-    val blogToken: String = blog.token
 
     val randomNumber: String
         get() = when (Random.nextInt(3)) {
