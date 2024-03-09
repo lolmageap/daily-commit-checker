@@ -3,6 +3,8 @@ package com.example.filialscheduler.scheduler
 import com.example.filialscheduler.client.GithubClient
 import com.example.filialscheduler.client.SlackClient
 import com.example.filialscheduler.client.SmsClient
+import com.example.filialscheduler.constant.ASIA_SEOUL
+import com.example.filialscheduler.constant.ONE_MINUTE_PAST_TWELVE_PM
 import com.example.filialscheduler.extension.defaultSerializeSuccessMessage
 import com.example.filialscheduler.extension.defaultSerializedFailureMessage
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -16,8 +18,7 @@ class Scheduler(
     private val smsClient: SmsClient,
     private val objectMapper: ObjectMapper,
 ) {
-
-    @Scheduled(cron = "0 1 0 * * *", zone = "Asia/Seoul")
+    @Scheduled(cron = ONE_MINUTE_PAST_TWELVE_PM, zone = ASIA_SEOUL)
     suspend fun schedule() {
         val count = githubClient.getCommitsCountForYesterday()
 
@@ -34,6 +35,5 @@ class Scheduler(
                 objectMapper.defaultSerializeSuccessMessage,
             )
         }
-
     }
 }
