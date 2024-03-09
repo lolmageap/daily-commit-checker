@@ -17,7 +17,6 @@ class TestController(
     private val smsClient: SmsClient,
     private val objectMapper: ObjectMapper,
 ) {
-
     @GetMapping("/github")
     suspend fun github() = githubClient.getCommitsCountForYesterday()
 
@@ -33,5 +32,4 @@ class TestController(
 
     @PostMapping("/sms")
     suspend fun smsTest() = smsClient.sendSms()
-
 }
