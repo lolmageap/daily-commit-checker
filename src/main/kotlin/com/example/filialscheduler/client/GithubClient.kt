@@ -33,7 +33,7 @@ class GithubClient(
     suspend fun getRepositoryNames(
         page: Int = 1,
         size: Int = 50,
-    ): List<GithubRepositoryName> {
+    ): List<GithubRepositoryName> = coroutineScope {
         val repositoriesUrl = "/users/${cherhyProperty.githubName}/repos?page=$page&per_page=$size"
 
         val response = webClient.get()
@@ -48,15 +48,15 @@ class GithubClient(
             response.addAll(nextPageRepositories)
         }
 
-        return response
+        response
     }
 
     suspend fun getCommits(
         repositoryName: String,
-    ): List<GitHubCommit> {
+    ): List<GitHubCommit> = coroutineScope {
         val commitsUrl = "/repos/${cherhyProperty.githubName}/$repositoryName/commits"
 
-        return webClient.get()
+        webClient.get()
             .uri(commitsUrl)
             .header("Authorization", "token ${cherhyProperty.githubToken}")
             .retrieve()
