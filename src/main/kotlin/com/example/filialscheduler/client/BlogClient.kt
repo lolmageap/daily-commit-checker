@@ -1,6 +1,9 @@
 package com.example.filialscheduler.client
 
 import com.example.filialscheduler.property.CherhyProperty
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.reactor.awaitSingle
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.client.WebClient
@@ -12,25 +15,25 @@ class BlogClient(
 ) {
     private val webClient = WebClient.create("https://velog.io")
 
-    fun getPostsCountForLastWeek() {
+    suspend fun getLastPostId() = coroutineScope {
         val html = fetchServerRenderedBlog()
-            ?: throw RuntimeException("Failed to fetch server rendered blog")
-
-        getLatestIdFromInitialData(html)
+        getLatestId(html)
     }
 
-    private fun getLatestIdFromInitialData(html: String): String {
-        val initialData = html.split("initialData").last()
-        println(initialData)
-        return ""
-    }
-
-    private fun fetchServerRenderedBlog(): String? {
+    private suspend fun fetchServerRenderedBlog(): String = coroutineScope {
         val path = "/${cherhyProperty.blogUser}/posts"
-        return webClient.get()
+        webClient.get()
             .uri(path)
             .retrieve()
             .bodyToMono(String::class.java)
-            .block()
+            .awaitSingle()
+            ?: throw RuntimeException("블로그 정보를 가져 오는데 실패 했습니다.")
+    }
+
+    private suspend fun getLatestId(html: String): String = coroutineScope {
+        async {
+            val initialData = html.split("initialData").last()
+            initialData.split("id\\\":\\\"")[1].substringBefore("\\")
+        }.await()
     }
 }
