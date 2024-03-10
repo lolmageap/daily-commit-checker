@@ -12,7 +12,7 @@ val ObjectMapper.defaultSerializedFailureMessage: BodyInserter<String, ReactiveH
         )
     )
 
-val ObjectMapper.defaultSerializeSuccessMessage: BodyInserter<String, ReactiveHttpOutputMessage>
+val ObjectMapper.defaultSerializeSuccessCommitMessage: BodyInserter<String, ReactiveHttpOutputMessage>
     get() = BodyInserters.fromValue(
         writeValueAsString(
             mapOf("text" to "오늘 하루도 커밋 하느라 고생 했습니다.^^")

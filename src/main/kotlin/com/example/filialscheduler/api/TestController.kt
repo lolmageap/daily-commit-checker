@@ -4,7 +4,7 @@ import com.example.filialscheduler.client.BlogClient
 import com.example.filialscheduler.client.GithubClient
 import com.example.filialscheduler.client.SlackClient
 import com.example.filialscheduler.client.SmsClient
-import com.example.filialscheduler.extension.defaultSerializeSuccessMessage
+import com.example.filialscheduler.extension.defaultSerializeSuccessCommitMessage
 import com.example.filialscheduler.extension.defaultSerializedFailureMessage
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.web.bind.annotation.GetMapping
@@ -23,7 +23,7 @@ class TestController(
     suspend fun github() = githubClient.getCommitsCountForYesterday()
 
     @GetMapping("/blog")
-    suspend fun blog() = blogClient.getPostsCountForLastWeek()
+    suspend fun blog() = blogClient.getLastPostId()
 
     @PostMapping("/slack/error")
     suspend fun slackFailureTest() = slackClient.sendMessage(
@@ -32,7 +32,7 @@ class TestController(
 
     @PostMapping("/slack/success")
     suspend fun slackSuccessTest() = slackClient.sendMessage(
-        objectMapper.defaultSerializeSuccessMessage
+        objectMapper.defaultSerializeSuccessCommitMessage
     )
 
     @PostMapping("/sms")
