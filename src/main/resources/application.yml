@@ -6,18 +6,23 @@ cherhy:
   github:
     user: ENC(i6LGl21wvQYrZAc8xQxbGhCJowhCwikO)
     token: ENC(9pkIqXCizhAvV4b6PtPo8zFUs7jRV0rJlf+D/uY9Z5uWj4Pr+2Je6qNcbJTjv4jLQGBW/YNH030=)
-
   coolsms:
     api-key: ENC(iBWuy+yDiLz3gP8prw3uCEzfz4JKXgxuVyiyEFsQ1pA=)
     api-secret: ENC(FbnhbhK/Vb3OG4n1kTLpfpW55PxFk7ZyMvYxIEfm2GZfUknJCw6VIb81C9NC/EA9)
     from: ENC(XuplNn8gYityWKyxT71KWIfwYEL2n+1T)
-
   phone:
     mom: ENC(B4RfMZ3q+1yCxBhGlbPNBiH36a6VBvPK)
     dad: ENC(tLSWfKikFfgbYjuhpmVy5eINwX5+QFLu)
     girlfriend: ENC(UAyZdkWv8n407F0NIFM10uKraeGiI7l9)
+  blog:
+    user: ENC(vpBKPfz0+oDIhPkIdUpZE4KnLpvTtV2l)
 
 notification:
   slack:
     webhook:
       url: ENC(ZTEXznbbJGy7mn2DLim5fiU707we9UfwXzzStIjg1gXgE9hYCPs8LH2dzHZO38bQz9nEiUr8+h9xjxrSEFh+Bin6/2s8w0oPynP0kHmj7htx8fJVRrSQN+yVBWGVfHm7)
+
+local:
+  location:
+    blog: ENC(I/G7WbEeN+8irppo02DvrRHsvyrcKdSHQ/8PUUeSgGy7lt/ux9VPs+A2Cyb5UCULfZPQJoIN/nHMy+ZnMAIshGGdWp+YQvKD)
+    filename: ENC(4jj+aDfIsS7VuWncA5dwdPD8e+R6fh0S1Sim7QAjXMs=)
