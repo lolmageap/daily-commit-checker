@@ -1,5 +1,7 @@
 package com.example.filialscheduler.client
 
+import com.example.filialscheduler.constant.AUTHORIZATION
+import com.example.filialscheduler.constant.TOKEN
 import com.example.filialscheduler.dto.GitHubCommit
 import com.example.filialscheduler.dto.GithubRepositoryName
 import com.example.filialscheduler.property.CherhyProperty
@@ -18,7 +20,7 @@ class GithubClient(
 ) {
     private val webClient = WebClient.create("https://api.github.com")
 
-    suspend fun getCommitsCountForYesterday(): Int = coroutineScope {
+    suspend fun getCommitsCountForYesterday() = coroutineScope {
         val githubRepositoryNames = getRepositoryNames()
 
         val commits = githubRepositoryNames.map { repositoryName ->
@@ -27,7 +29,7 @@ class GithubClient(
             }
         }.awaitAll().flatten()
 
-        commits.count { it.yesterdayCommit }
+        commits.count(GitHubCommit::yesterdayCommit)
     }
 
     suspend fun getRepositoryNames(
@@ -38,7 +40,7 @@ class GithubClient(
 
         val response = webClient.get()
             .uri(repositoriesUrl)
-            .header("Authorization", "token ${cherhyProperty.githubToken}")
+            .header(AUTHORIZATION, TOKEN + cherhyProperty.githubToken)
             .retrieve()
             .awaitBody<MutableList<GithubRepositoryName>>()
 
@@ -53,12 +55,12 @@ class GithubClient(
 
     suspend fun getCommits(
         repositoryName: String,
-    ): List<GitHubCommit> = coroutineScope {
+    ) = coroutineScope {
         val commitsUrl = "/repos/${cherhyProperty.githubName}/$repositoryName/commits"
 
         webClient.get()
             .uri(commitsUrl)
-            .header("Authorization", "token ${cherhyProperty.githubToken}")
+            .header(AUTHORIZATION, TOKEN + cherhyProperty.githubToken)
             .retrieve()
             .awaitBody<List<GitHubCommit>>()
     }
