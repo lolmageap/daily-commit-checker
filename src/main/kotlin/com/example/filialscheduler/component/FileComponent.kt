@@ -12,7 +12,7 @@ import java.io.File
 class FileComponent(
     private val locationProperty: LocationProperty,
 ) {
-    suspend fun readLastBlogId(): String = withContext(Dispatchers.IO) {
+    suspend fun readLastBlogId() = withContext(Dispatchers.IO) {
         val file = File(locationProperty.blogPath)
         if (!file.exists()) {
             file.createNewFile()
