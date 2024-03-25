@@ -16,11 +16,11 @@ class BlogClient(
     private val webClient = WebClient.create("https://velog.io")
 
     suspend fun getLastPostId() = coroutineScope {
-        val html = fetchServerRenderedBlog()
+        val html = fetchRenderedBlog()
         getLatestId(html)
     }
 
-    private suspend fun fetchServerRenderedBlog() = coroutineScope {
+    private suspend fun fetchRenderedBlog() = coroutineScope {
         val path = "/${cherhyProperty.blogUser}/posts"
         webClient.get()
             .uri(path)
