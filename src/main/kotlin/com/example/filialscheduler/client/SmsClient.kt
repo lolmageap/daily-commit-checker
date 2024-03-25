@@ -24,9 +24,7 @@ class SmsClient(
         val message = Message(
             from = cherhyProperty.coolsmsFrom,
             to = cherhyProperty.randomNumber,
-            text = """
-                내가 내일 저녁에 밥살게
-            """.trimIndent(),
+            text = "내가 내일 저녁에 밥살게",
         )
 
         messageService.sendOne(
