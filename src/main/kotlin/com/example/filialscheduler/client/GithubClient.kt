@@ -1,6 +1,7 @@
 package com.example.filialscheduler.client
 
 import com.example.filialscheduler.constant.AUTHORIZATION
+import com.example.filialscheduler.constant.GITHUB_ENDPOINT
 import com.example.filialscheduler.constant.TOKEN
 import com.example.filialscheduler.dto.GitHubCommit
 import com.example.filialscheduler.dto.GithubRepositoryName
@@ -18,7 +19,7 @@ import org.springframework.web.reactive.function.client.awaitBody
 class GithubClient(
     private val cherhyProperty: CherhyProperty,
 ) {
-    private val webClient = WebClient.create("https://api.github.com")
+    private val webClient = WebClient.create(GITHUB_ENDPOINT)
 
     suspend fun getCommitsCountForYesterday() = coroutineScope {
         val githubRepositoryNames = getRepositoryNames()

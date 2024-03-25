@@ -1,5 +1,6 @@
 package com.example.filialscheduler.client
 
+import com.example.filialscheduler.constant.COOL_SMS_ENDPOINT
 import com.example.filialscheduler.property.CherhyProperty
 import kotlinx.coroutines.coroutineScope
 import net.nurigo.sdk.message.model.Message
@@ -17,14 +18,14 @@ class SmsClient(
         DefaultMessageService(
             cherhyProperty.coolsmsApiKey,
             cherhyProperty.coolsmsApiSecret,
-            "https://api.coolsms.co.kr",
+            COOL_SMS_ENDPOINT,
         )
 
     suspend fun sendSms() = coroutineScope {
         val message = Message(
             from = cherhyProperty.coolsmsFrom,
             to = cherhyProperty.randomNumber,
-            text = "내가 내일 저녁에 밥살게",
+            text = "내일 저녁에 밥살게",
         )
 
         messageService.sendOne(

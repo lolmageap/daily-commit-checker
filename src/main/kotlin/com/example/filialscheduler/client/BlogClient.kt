@@ -1,5 +1,6 @@
 package com.example.filialscheduler.client
 
+import com.example.filialscheduler.constant.VELOG_ENDPOINT
 import com.example.filialscheduler.property.CherhyProperty
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
@@ -13,7 +14,7 @@ import org.springframework.web.reactive.function.client.WebClient
 class BlogClient(
     private val cherhyProperty: CherhyProperty,
 ) {
-    private val webClient = WebClient.create("https://velog.io")
+    private val webClient = WebClient.create(VELOG_ENDPOINT)
 
     suspend fun getLastPostId() = coroutineScope {
         val html = fetchRenderedBlog()
