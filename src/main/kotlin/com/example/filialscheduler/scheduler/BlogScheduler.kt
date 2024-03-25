@@ -5,7 +5,7 @@ import com.example.filialscheduler.client.SlackClient
 import com.example.filialscheduler.client.SmsClient
 import com.example.filialscheduler.component.FileComponent
 import com.example.filialscheduler.constant.ASIA_SEOUL
-import com.example.filialscheduler.constant.MONDAY_ONE_MINUTE_PAST_TWELVE_PM
+import com.example.filialscheduler.constant.FIRST_DAY_ONE_MINUTE_PAST_MIDNIGHT
 import com.example.filialscheduler.extension.defaultSerializedFailureMessage
 import com.example.filialscheduler.extension.serializeMessage
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -23,7 +23,7 @@ class BlogScheduler(
     private val smsClient: SmsClient,
     private val objectMapper: ObjectMapper,
 ) {
-    @Scheduled(cron = MONDAY_ONE_MINUTE_PAST_TWELVE_PM, zone = ASIA_SEOUL)
+    @Scheduled(cron = FIRST_DAY_ONE_MINUTE_PAST_MIDNIGHT, zone = ASIA_SEOUL)
     suspend fun blog(): Unit = coroutineScope {
         val thisWeekBlogId = async { blogClient.getLastPostId() }.await()
         val lastWeekBlogId = async { fileComponent.readLastBlogId() }.await()
