@@ -1,5 +1,6 @@
 package com.example.filialscheduler.component
 
+import com.example.filialscheduler.extension.notExists
 import com.example.filialscheduler.property.LocationProperty
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -14,7 +15,7 @@ class FileComponent(
 ) {
     suspend fun readLastBlogId() = withContext(Dispatchers.IO) {
         val file = File(locationProperty.blogPath)
-        if (!file.exists()) {
+        if (file.notExists()) {
             file.createNewFile()
         }
         file.readText()
