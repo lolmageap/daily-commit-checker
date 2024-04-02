@@ -33,6 +33,10 @@ dependencies {
     implementation("com.slack.api:slack-api-client:1.38.0")
     implementation("net.nurigo:sdk:4.3.0")
 
+    implementation("org.springframework.boot:spring-boot-starter-mail:3.1.4")
+
+    implementation("org.jetbrains.kotlinx:kotlinx-html-jvm:0.11.0")
+
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("io.kotest:kotest-runner-junit5:5.7.2")
     testImplementation("io.kotest:kotest-assertions-core:5.7.2")
