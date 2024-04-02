@@ -1,3 +1,20 @@
+spring:
+  mail:
+#    host: ENC(Mz2+M9eFGsqmIa8XrhwB2ZjrP+7zeBdZ)
+#    port: ENC(StcEUTdFCzwO3w4w5I0ABQ==)
+#    username: ENC(1/5Lr19WTv1Xoc90Tj5wyxSL9U5Y/Mcff6T8iMvrCkI=)
+#    password: ENC(OuHq6eUkBDQVIp7VkHiVngFKy/PO/SO82Jj0iWCpr8Q=)
+    host: ENC(10nUXy75uHV8EXVEeflaafNKUI3QKRRBsEY2U6AI0mc=)
+    port: ENC(vkV8cbpyMR+ZU+Mmar2I6w==)
+    username: ENC(j/qRdb1TvK2TehKQmvygV8sh3nEChSI6gtbeH9ewW8k=)
+    password: ENC(+wJfin8tRY9ZAhIvm2eD47ePCKS3wfsC)
+    properties:
+      mail:
+        smtp:
+          starttls:
+            enable: true
+          auth: true
+
 jasypt:
   encryptor:
     password: secret
@@ -17,6 +34,9 @@ cherhy:
   blog:
     user: ENC(vpBKPfz0+oDIhPkIdUpZE4KnLpvTtV2l)
 
+ryu:
+  email: ENC(5Nb//peqxArN7R+vGs1gDL3DXkrtFrsXWkR7I74W/KY=)
+
 notification:
   slack:
     webhook:
@@ -24,5 +44,5 @@ notification:
 
 local:
   location:
-    blog: ENC(I/G7WbEeN+8irppo02DvrRHsvyrcKdSHQ/8PUUeSgGy7lt/ux9VPs+A2Cyb5UCULfZPQJoIN/nHMy+ZnMAIshGGdWp+YQvKD)
+    blog: ENC(T0obqknaUYIYtABDTMgr/uwwcVcDvx0m)
     filename: ENC(4jj+aDfIsS7VuWncA5dwdPD8e+R6fh0S1Sim7QAjXMs=)
