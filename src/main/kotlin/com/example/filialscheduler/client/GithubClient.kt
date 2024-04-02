@@ -9,13 +9,11 @@ import com.example.filialscheduler.property.CherhyProperty
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
-import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.client.WebClient
 import org.springframework.web.reactive.function.client.awaitBody
 
 @Component
-@EnableConfigurationProperties(CherhyProperty::class)
 class GithubClient(
     private val cherhyProperty: CherhyProperty,
 ) {

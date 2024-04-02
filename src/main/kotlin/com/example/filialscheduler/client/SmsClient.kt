@@ -6,11 +6,9 @@ import kotlinx.coroutines.coroutineScope
 import net.nurigo.sdk.message.model.Message
 import net.nurigo.sdk.message.request.SingleMessageSendingRequest
 import net.nurigo.sdk.message.service.DefaultMessageService
-import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.stereotype.Component
 
 @Component
-@EnableConfigurationProperties(CherhyProperty::class)
 class SmsClient(
     private val cherhyProperty: CherhyProperty,
 ) {
