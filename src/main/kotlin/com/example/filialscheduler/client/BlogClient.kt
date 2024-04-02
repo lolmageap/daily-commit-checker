@@ -5,12 +5,10 @@ import com.example.filialscheduler.property.CherhyProperty
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.reactor.awaitSingle
-import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.client.WebClient
 
 @Component
-@EnableConfigurationProperties(CherhyProperty::class)
 class BlogClient(
     private val cherhyProperty: CherhyProperty,
 ) {
