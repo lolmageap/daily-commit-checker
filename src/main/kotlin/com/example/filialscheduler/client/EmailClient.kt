@@ -21,7 +21,6 @@ class EmailClient(
     private val ryuProperty: RyuProperty,
 ) {
     suspend fun sendEmailToRyu() = coroutineScope {
-        println(mailProperty)
         val writer = StringWriter()
         val msg = writer.appendHTML().html {
             head {
