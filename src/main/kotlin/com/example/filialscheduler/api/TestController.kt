@@ -1,9 +1,6 @@
 package com.example.filialscheduler.api
 
-import com.example.filialscheduler.client.BlogClient
-import com.example.filialscheduler.client.GithubClient
-import com.example.filialscheduler.client.SlackClient
-import com.example.filialscheduler.client.SmsClient
+import com.example.filialscheduler.client.*
 import com.example.filialscheduler.extension.defaultSerializeSuccessCommitMessage
 import com.example.filialscheduler.extension.defaultSerializedFailureMessage
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -18,6 +15,7 @@ class TestController(
     private val blogClient: BlogClient,
     private val smsClient: SmsClient,
     private val objectMapper: ObjectMapper,
+    private val emailClient: EmailClient,
 ) {
     @GetMapping("/github")
     suspend fun github() = githubClient.getCommitsCountForYesterday()
@@ -37,4 +35,7 @@ class TestController(
 
     @PostMapping("/sms")
     suspend fun smsTest() = smsClient.sendSms()
+
+    @PostMapping("/email")
+    suspend fun emailTest() = emailClient.sendEmailToRyu()
 }
