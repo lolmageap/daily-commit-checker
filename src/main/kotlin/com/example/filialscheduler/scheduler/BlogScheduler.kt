@@ -25,12 +25,12 @@ class BlogScheduler(
 ) {
     @Scheduled(cron = FIRST_DAY_ONE_MINUTE_PAST_MIDNIGHT, zone = ASIA_SEOUL)
     suspend fun blog(): Unit = coroutineScope {
-        val thisWeekBlogId = async { blogClient.getLastPostId() }.await()
-        val lastWeekBlogId = async { fileComponent.readLastBlogId() }.await()
+        val thisMonthBlogId = async { blogClient.getLastPostId() }.await()
+        val lastMonthBlogId = async { fileComponent.readLastBlogId() }.await()
 
-        if (thisWeekBlogId != lastWeekBlogId) {
+        if (thisMonthBlogId != lastMonthBlogId) {
             launch {
-                fileComponent.writeLastBlogId(thisWeekBlogId)
+                fileComponent.writeLastBlogId(thisMonthBlogId)
             }
 
             launch {
