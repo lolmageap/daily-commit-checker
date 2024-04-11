@@ -15,13 +15,13 @@
 4. 문자 발송이 실패 했다면 slack 으로 알린다.
 
 ## How to run
-- [ ] Github 에서 발급 받은 personal access token 을 설정 파일에 등록 한다.
-- [ ] Velog의 username을 설정 파일에 등록한다.
+- [ ] Github 에서 발급 받은 personal access token 을 yml file에 등록 한다.
+- [ ] Velog의 username을 yml file에 등록한다.
 - [ ] 암호화 알고리즘과 password를 환경 변수로 등록한다.
-- [ ] coolsms api 를 사용 하기 위해 발급 받은 api key 를 설정 파일에 등록 한다.
-- [ ] 자신의 휴대폰 번호와 문자를 받을 수 있는 번호를 설정 파일에 등록 한다.
-- [ ] Slack webhook url 을 설정 파일에 등록 한다.
-- [ ] `./gradlew bootRun` 으로 실행 한다.
+- [ ] coolsms api 를 사용 하기 위해 발급 받은 api key 를 yml file에 등록 한다.
+- [ ] 자신의 휴대폰 번호와 문자를 받을 수 있는 번호를 yml file에 등록 한다.
+- [ ] Slack webhook url 을 yml file에 등록 한다.
+- [ ] `./gradlew bootRun`으로 실행 한다.
 
 ## TODO
 - 사업자 등록을 하지 않는 다면 송금 이나 선물 하기 api 기능을 사용할 수 없다.
