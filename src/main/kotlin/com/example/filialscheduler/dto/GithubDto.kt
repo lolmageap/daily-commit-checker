@@ -11,7 +11,7 @@ data class GitHubCommit(
     val sha: String,
     val commit: CommitDetail,
 ) {
-    val yesterdayCommit: Boolean
+    val yesterdayCommit
         get() = date.startsWith(
             ZonedDateTime.now().minusDays(1).toLocalDate().toString()
         )

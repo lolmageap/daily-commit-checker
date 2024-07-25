@@ -29,7 +29,9 @@ class BlogClient(
             ?: throw RuntimeException("블로그 정보를 가져 오는데 실패 했습니다.")
     }
 
-    private suspend fun getLatestId(html: String) = coroutineScope {
+    private suspend fun getLatestId(
+        html: String,
+    ) = coroutineScope {
         async {
             val initialData = html.split("initialData").last()
             initialData.split("id\\\":\\\"")[1].substringBefore("\\")

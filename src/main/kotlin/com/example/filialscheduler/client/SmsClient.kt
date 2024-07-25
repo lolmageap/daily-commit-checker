@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component
 class SmsClient(
     private val cherhyProperty: CherhyProperty,
 ) {
-    private val messageService: DefaultMessageService =
+    private val messageService =
         DefaultMessageService(
             cherhyProperty.coolsmsApiKey,
             cherhyProperty.coolsmsApiSecret,

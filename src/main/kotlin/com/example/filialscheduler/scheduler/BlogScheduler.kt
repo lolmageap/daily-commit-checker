@@ -24,7 +24,7 @@ class BlogScheduler(
     private val objectMapper: ObjectMapper,
 ) {
     @Scheduled(cron = FIRST_DAY_ONE_MINUTE_PAST_MIDNIGHT, zone = ASIA_SEOUL)
-    suspend fun blog(): Unit = coroutineScope {
+    suspend fun blog() = coroutineScope {
         val thisMonthBlogId = async { blogClient.getLastPostId() }.await()
         val lastMonthBlogId = async { fileComponent.readLastBlogId() }.await()
 
@@ -47,5 +47,7 @@ class BlogScheduler(
                 objectMapper.serializeMessage("블로그 글을 작성 하느라 고생 하셨습니다."),
             )
         }
+
+        Unit
     }
 }

@@ -22,7 +22,7 @@ data class MailProperty(
             setProperty("mail.smtp.ssl.enable", "true")
         }
 
-    fun toJavaMailSender(): JavaMailSenderImpl =
+    fun toJavaMailSender() =
         JavaMailSenderImpl().also {
             it.host = host
             it.username = username

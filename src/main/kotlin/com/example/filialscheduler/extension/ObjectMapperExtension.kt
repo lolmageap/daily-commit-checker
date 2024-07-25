@@ -19,7 +19,9 @@ val ObjectMapper.defaultSerializeSuccessCommitMessage: BodyInserter<String, Reac
         )
     )
 
-fun ObjectMapper.serializeMessage(message: String) =
+fun ObjectMapper.serializeMessage(
+    message: String,
+) =
     BodyInserters.fromValue(
         writeValueAsString(
             mapOf("text" to message)

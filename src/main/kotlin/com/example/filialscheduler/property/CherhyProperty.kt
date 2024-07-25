@@ -10,16 +10,16 @@ data class CherhyProperty(
     val github: GithubProperty,
     val blog: BlogProperty,
 ) {
-    val githubName: String = github.user
-    val githubToken: String = github.token
+    val githubName = github.user
+    val githubToken = github.token
 
-    val coolsmsApiKey: String = coolsms.apiKey
-    val coolsmsApiSecret: String = coolsms.apiSecret
-    val coolsmsFrom: String = coolsms.from
+    val coolsmsApiKey = coolsms.apiKey
+    val coolsmsApiSecret = coolsms.apiSecret
+    val coolsmsFrom = coolsms.from
 
-    val blogUser: String = blog.user
+    val blogUser = blog.user
 
-    val randomNumber: String
+    val randomNumber
         get() = when (
             Random.nextInt(phone.totalContract)
         ) {

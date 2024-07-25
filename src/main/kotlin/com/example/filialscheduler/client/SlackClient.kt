@@ -17,12 +17,13 @@ class SlackClient(
 
     suspend fun sendMessage(
         serializedMessage: BodyInserter<String, ReactiveHttpOutputMessage>,
-    ): Unit = coroutineScope {
+    ) = coroutineScope {
         launch {
             webClient.post()
                 .body(serializedMessage)
                 .retrieve()
                 .awaitBody()
         }
+        Unit
     }
 }
