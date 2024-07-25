@@ -20,9 +20,11 @@ data class CherhyProperty(
     val blogUser: String = blog.user
 
     val randomNumber: String
-        get() = when (Random.nextInt(3)) {
+        get() = when (
+            Random.nextInt(phone.totalContract)
+        ) {
             0 -> phone.dad
             1 -> phone.mom
-            else -> phone.girlfriend
+            else -> throw IllegalArgumentException("Invalid phone number")
         }
 }
