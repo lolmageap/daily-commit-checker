@@ -2,7 +2,6 @@ package com.example.filialscheduler.client
 
 import com.example.filialscheduler.constant.VELOG_ENDPOINT
 import com.example.filialscheduler.property.CherhyProperty
-import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.reactor.awaitSingle
 import org.springframework.stereotype.Component
@@ -14,14 +13,11 @@ class BlogClient(
 ) {
     private val webClient = WebClient.create(VELOG_ENDPOINT)
 
-    suspend fun getLastPostId() = coroutineScope {
-        val html = fetchRenderedBlog()
-        getLatestId(html)
-    }
+    suspend fun getLastPostId() = fetchRenderedBlog().latestId
 
-    private suspend fun fetchRenderedBlog() = coroutineScope {
+    private suspend fun fetchRenderedBlog(): String {
         val path = "/${cherhyProperty.blogUser}/posts"
-        webClient.get()
+        return webClient.get()
             .uri(path)
             .retrieve()
             .bodyToMono(String::class.java)
@@ -29,12 +25,9 @@ class BlogClient(
             ?: throw RuntimeException("블로그 정보를 가져 오는데 실패 했습니다.")
     }
 
-    private suspend fun getLatestId(
-        html: String,
-    ) = coroutineScope {
-        async {
-            val initialData = html.split("initialData").last()
-            initialData.split("id\\\":\\\"")[1].substringBefore("\\")
-        }.await()
-    }
+    private val String.latestId: String
+        get() {
+            val initialData = this.split("initialData").last()
+            return initialData.split("id\\\":\\\"")[1].substringBefore("\\")
+        }
 }
